@@ -1,27 +1,34 @@
-import styled from 'styled-components';
-import Menu from './components/Menu';
-import Navbar from './components/Navbar';
+import { useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import Menu from "./components/Menu";
+import Navbar from "./components/Navbar";
+import { darkTheme, lightTheme } from "./utils/Theme";
 
 const Container = styled.div`
-display: flex;
+  display: flex;
 `;
 
 const Main = styled.div`
-flex:7;`;
+  flex: 7;
+  background-color: ${({ theme }) => theme.bg};
+`;
 const Wrapper = styled.div``;
 
 function App() {
-  return (
-    <Container>
-      <Menu />
-      <Main>
-        <Navbar />
-        <Wrapper>
-          video cards
-        </Wrapper>
+  const [darkMode, setDarkmode] = useState(true);
 
-      </Main>
-    </Container>
+  return (
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Container>
+        <Menu darkMode={darkMode} setDarkmode={setDarkmode} />
+        <Main>
+          <Navbar />
+          <Wrapper>
+            <h1>Test</h1>            
+          </Wrapper>
+        </Main>
+      </Container>
+    </ThemeProvider>
   );
 }
 
