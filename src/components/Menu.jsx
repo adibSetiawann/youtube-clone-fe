@@ -1,28 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import LogoYoutube from "../img/youtube.png";
-import HomeIcon from '@mui/icons-material/Home';
-import ExploreIcon from '@mui/icons-material/Explore';
-import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
-import HistoryIcon from '@mui/icons-material/History';
-import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import MovieIcon from '@mui/icons-material/Movie';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
-import LiveTvIcon from '@mui/icons-material/LiveTv';
-import SettingsIcon from '@mui/icons-material/Settings';
-import FlagIcon from '@mui/icons-material/Flag';
-import HelpIcon from '@mui/icons-material/Help';
-import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
+import HomeIcon from "@mui/icons-material/Home";
+import ExploreIcon from "@mui/icons-material/Explore";
+import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
+import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
+import HistoryIcon from "@mui/icons-material/History";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
+import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import MovieIcon from "@mui/icons-material/Movie";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
+import LiveTvIcon from "@mui/icons-material/LiveTv";
+import SettingsIcon from "@mui/icons-material/Settings";
+import FlagIcon from "@mui/icons-material/Flag";
+import HelpIcon from "@mui/icons-material/Help";
+import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Container = styled.div`
   flex: 1;
-  background-color: #202020;
+  background-color: ${({ theme }) => theme.bg};
   height: 100%;
-  color: white;
+  color: ${({ theme }) => theme.text};
   font-size: 0.8rem;
+  position: sticky;
+  top: 0;
 `;
 
 const Wrapper = styled.div`
@@ -47,10 +50,35 @@ const Item = styled.div`
 `;
 
 const Hr = styled.hr`
-margin: 15px 0px;
-border: 0.5px solid #373737;
+  margin: 15px 0px;
+  border: 0.5px solid ${({ theme }) => theme.soft};
 `;
-const Menu = () => {
+
+const Login = styled.div`
+  margin-bottom: 10px;
+`;
+const Button = styled.button`
+  display: flex;
+  align-items: centre;
+  gap: 5px;
+  padding: 5px 15px;
+  background-color: transparent;
+  border: 1px solid #3ea6ff;
+  color: #3ea6ff;
+  border-radius: 3px;
+  font-weight: 500;
+  margin-top: 10px;
+  cursor: pointer;
+`;
+
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin-bottom: 20px;
+`;
+
+const Menu = ({ darkMode, setDarkmode }) => {
   return (
     <Container>
       <Wrapper>
@@ -59,52 +87,60 @@ const Menu = () => {
           AdibTube
         </Logo>
         <Item>
-            <HomeIcon /> Home
+          <HomeIcon /> Home
         </Item>
         <Item>
-            <ExploreIcon /> Explore
+          <ExploreIcon /> Explore
         </Item>
         <Item>
-            <SubscriptionsIcon /> Subscriptsion
-        </Item>
-        <Hr />
-        <Item>
-            <VideoLibraryIcon /> Library
-        </Item>
-        <Item>
-            <HistoryIcon /> History
+          <SubscriptionsIcon /> Subscriptsion
         </Item>
         <Hr />
         <Item>
-            <LibraryMusicIcon /> Music
+          <VideoLibraryIcon /> Library
         </Item>
         <Item>
-            <SportsBasketballIcon /> Sports
+          <HistoryIcon /> History
+        </Item>
+        <Hr />
+        <Login>
+          Sign in to like videos. comment. and subscribe.
+          <Button>
+            <AccountCircleIcon /> Sign In
+          </Button>
+        </Login>
+        <Hr />
+        <Title> Best of Adib Tube</Title>
+        <Item>
+          <LibraryMusicIcon /> Music
         </Item>
         <Item>
-            <SportsEsportsIcon /> Gaming
+          <SportsBasketballIcon /> Sports
         </Item>
         <Item>
-            <MovieIcon /> Movie
+          <SportsEsportsIcon /> Gaming
         </Item>
         <Item>
-            <NewspaperIcon /> News
+          <MovieIcon /> Movie
         </Item>
         <Item>
-            <LiveTvIcon /> Live
+          <NewspaperIcon /> News
+        </Item>
+        <Item>
+          <LiveTvIcon /> Live
         </Item>
         <Hr />
         <Item>
-            <SettingsIcon /> Settings
+          <SettingsIcon /> Settings
         </Item>
         <Item>
-            <FlagIcon /> Report
+          <FlagIcon /> Report
         </Item>
         <Item>
-            <HelpIcon /> Help
+          <HelpIcon /> Help
         </Item>
-        <Item>
-            <SettingsBrightnessIcon /> Dark Mode
+        <Item onClick={() => setDarkmode(!darkMode)}>
+          <SettingsBrightnessIcon /> Dark Mode
         </Item>
       </Wrapper>
     </Container>
