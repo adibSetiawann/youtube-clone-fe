@@ -59,7 +59,7 @@ const Login = styled.div`
 `;
 const Button = styled.button`
   display: flex;
-  align-items: centre;
+  align-items: center;
   gap: 5px;
   padding: 5px 15px;
   background-color: transparent;
