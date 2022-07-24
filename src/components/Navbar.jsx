@@ -33,6 +33,10 @@ const Search = styled.div`
 const Input = styled.input`
   border: none;
   background-color: transparent;
+  outline: none;
+  padding: 1px;
+  width: 100%;
+  color: ${({ theme }) => theme.text};
 `;
 const Button = styled.button`
   display: flex;
@@ -51,7 +55,7 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Search>
-          <Input placeholder="search" />
+          <Input placeholder="Search" />
           <SearchIcon />
         </Search>
         <Button>

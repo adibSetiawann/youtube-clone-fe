@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -47,6 +48,7 @@ color: ${({theme}) => theme.textSoft};
 
 const Card = () => {
   return (
+    <Link to="/video" style={{textDecoration:"none"}}>
     <Container>
       <Image alt='video card component' src="https://picsum.photos/seed/picsum/400"/>
       <Details>
@@ -58,6 +60,7 @@ const Card = () => {
         </Texts>
       </Details>
     </Container>
+    </Link>
   );
 };
 
