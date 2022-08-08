@@ -70,10 +70,12 @@ const Navbar = () => {
   return (
     <Container>
       <Wrapper>
+        <Link to="random" style={{ textDecoration: "none", color: "inherit" }}>
         <Logo>
           <Image src={LogoYoutube} alt="youtubelogo" />
           AdibTube
         </Logo>
+        </Link>
 
         <Search>
           <Input placeholder="Search" />

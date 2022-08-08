@@ -1,6 +1,8 @@
-import React from "react";
+import axios from "axios";
+import React,{useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { format } from "timeago.js";
 
 const Container = styled.div`
   width: 240px;
@@ -51,17 +53,31 @@ const InfoVideo = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-const Card = ({ type }) => {
+const Card = ({ type, videos }) => {
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchChannel = async () => {
+      const res = await axios.get(`/users/find/${videos.userId}`);
+      setChannel(res.data);
+    };
+    fetchChannel();
+  }, [videos.userId]);
+
+  console.log('setelahh use effect  ', channel);
+
   return (
     <Link to="/video" style={{ textDecoration: "none" }}>
       <Container type={type}>
-        <Image type={type} alt="video card component" src="https://picsum.photos/seed/picsum/400" />
+        <Image type={type} src={videos.imgUrl} alt="video card component" />
         <Details type={type}>
           <ChannelImage type={type} />
           <Texts>
-            <Title type={type}>Test Video</Title>
-            <ChannelName type={type}>Adib Setiawan</ChannelName>
-            <InfoVideo type={type}>12 views &bull; 2 year ago</InfoVideo>
+            <Title type={type}>{videos.title}</Title>
+            <ChannelName type={type}>test</ChannelName>
+            <InfoVideo type={type}>
+              {videos.views} views &bull; {format(videos.createdAt)}
+            </InfoVideo>
           </Texts>
         </Details>
       </Container>

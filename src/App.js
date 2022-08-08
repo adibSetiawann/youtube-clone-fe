@@ -9,21 +9,21 @@ import Video from "./pages/Video";
 import SignIn from "./pages/SignIn";
 import Loader from "./components/Loader";
 
-
 const Container = styled.div`
   display: flex;
 `;
 
 const Main = styled.div`
-   overflow: auto;
-   width: 100%;
+  overflow: auto;
+  width: 100%;
   background-color: ${({ theme }) => theme.bg};
 `;
 const Wrapper = styled.div`
-margin-top: 56px;
-margin-left: 15%;
-padding: 22px 76px;
-padding-right: 0;`;
+  margin-top: 56px;
+  margin-left: 15%;
+  padding: 22px 76px;
+  padding-right: 0;
+`;
 
 function App() {
   const [darkMode, setDarkmode] = useState(true);
@@ -38,12 +38,15 @@ function App() {
             <Wrapper>
               <Routes>
                 <Route path="/">
-                  <Route index element={<Home />} />
+                  <Route index element={<Home type="random" />} />
+                  <Route path="random" index element={<Home type="random" />} />
+                  <Route path="trends" index element={<Home type="trends" />} />
+                  <Route path="sub" index element={<Home type="sub" />} />
                   <Route path="/signin" element={<SignIn />} />
                   <Route path="video">
                     <Route path=":id" element={<Video />} />
                   </Route>
-                  <Route path="/loader" element={<Loader />}/>
+                  <Route path="/loader" element={<Loader />} />
                 </Route>
               </Routes>
             </Wrapper>
