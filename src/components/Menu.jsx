@@ -41,7 +41,7 @@ const Item = styled.div`
   cursor: pointer;
   padding: 7.5px 15px;
 
-  &:hover{
+  &:hover {
     background-color: ${({ theme }) => theme.soft};
     border-radius: 3px;
   }
@@ -80,15 +80,21 @@ const Menu = ({ darkMode, setDarkmode }) => {
   return (
     <Container>
       <Wrapper>
+      <Link to="random" style={{ textDecoration: "none", color: "inherit" }}>
         <Item>
           <HomeIcon /> Home
         </Item>
-        <Item>
-          <ExploreIcon /> Explore
-        </Item>
-        <Item>
-          <SubscriptionsIcon /> Subscriptsion
-        </Item>
+      </Link>
+        <Link to="trends" style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <ExploreIcon /> Explore
+          </Item>
+        </Link>
+        <Link to="sub" style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <SubscriptionsIcon /> Subscriptsion
+          </Item>
+        </Link>
         <Hr />
         <Item>
           <VideoLibraryIcon /> Library
@@ -99,10 +105,10 @@ const Menu = ({ darkMode, setDarkmode }) => {
         <Hr />
         <Login>
           Sign in to like videos. comment. and subscribe.
-          <Link to='signin' style={{textDecoration: "none"}}>
-          <Button>
-            <AccountCircleIcon /> Sign In
-          </Button>
+          <Link to="signin" style={{ textDecoration: "none" }}>
+            <Button>
+              <AccountCircleIcon /> Sign In
+            </Button>
           </Link>
         </Login>
         <Hr />
