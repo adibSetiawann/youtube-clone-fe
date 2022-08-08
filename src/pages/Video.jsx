@@ -7,12 +7,14 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 import Comments from "../components/Comments";
 import AvatarImage from "../img/avatar.png";
+import Card from '../components/Card'
+
 const Container = styled.div`
   display: flex;
+  gap: 34px;
 `;
 const Content = styled.div`
-  flex: 6;
-  gap: 24px;
+  // flex: 7;
 `;
 const VideoWrapper = styled.div``;
 
@@ -51,7 +53,6 @@ const Hr = styled.hr`
 `;
 
 const Recommendation = styled.div`
-  flex: 2;
 `;
 const Channel = styled.div`
   display: flex;
@@ -115,7 +116,7 @@ const Video = () => {
           />
           <Title>Padi - Mahadewi</Title>
           <Details>
-            <Info>7.232.123 views || Mar 21, 2013</Info>
+            <Info>7.232.123 views &bull; Mar 21, 2013</Info>
             <Buttons>
               <Button>
                 <ThumbUpIcon /> Like
@@ -147,7 +148,23 @@ const Video = () => {
           <Comments />
         </VideoWrapper>
       </Content>
-      <Recommendation>Recommendation</Recommendation>
+      <Recommendation>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+      </Recommendation>
     </Container>
   );
 };

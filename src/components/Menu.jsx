@@ -20,34 +20,32 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  flex: 1;
+  width: 16%;
+  position: fixed;
+  overflow: auto;
+  scrollbar-width: none;
   background-color: ${({ theme }) => theme.bgLighter};
   height: 100%;
   color: ${({ theme }) => theme.text};
   font-size: 0.8rem;
-  position: sticky;
-  top: 0;
 `;
 
 const Wrapper = styled.div`
   padding: 18px 26px;
+  margin-top: 36px;
 `;
-const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: bold;
-  margin-bottom: 25px;
-`;
-const Image = styled.img`
-  height: 25px;
-`;
+
 const Item = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
-  padding: 7.5px 0px;
+  padding: 7.5px 15px;
+
+  &:hover{
+    background-color: ${({ theme }) => theme.soft};
+    border-radius: 3px;
+  }
 `;
 
 const Hr = styled.hr`
@@ -83,12 +81,12 @@ const Menu = ({ darkMode, setDarkmode }) => {
   return (
     <Container>
       <Wrapper>
-      <Link to="/" style={{textDecoration:"none", color:"inherit"}}>
+      {/* <Link to="/" style={{textDecoration:"none", color:"inherit"}}>
         <Logo>
           <Image src={LogoYoutube} alt="youtubelogo" />
           AdibTube
         </Logo>
-      </Link>
+      </Link> */}
         <Item>
           <HomeIcon /> Home
         </Item>
@@ -108,9 +106,11 @@ const Menu = ({ darkMode, setDarkmode }) => {
         <Hr />
         <Login>
           Sign in to like videos. comment. and subscribe.
+          <Link to='signin' style={{textDecoration: "none"}}>
           <Button>
             <AccountCircleIcon /> Sign In
           </Button>
+          </Link>
         </Login>
         <Hr />
         <Title> Best of Adib Tube</Title>
