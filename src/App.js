@@ -6,6 +6,8 @@ import { darkTheme, lightTheme } from "./utils/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Video from "./pages/Video";
+import SignIn from "./pages/SignIn";
+import Loader from "./components/Loader";
 
 
 const Container = styled.div`
@@ -13,11 +15,14 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-  flex: 7;
+   // overflow: auto;
   background-color: ${({ theme }) => theme.bg};
 `;
 const Wrapper = styled.div`
-padding: 22px 96px;`;
+margin-top: 56px;
+margin-left: 15%;
+padding: 22px 76px;
+padding-right: 0;`;
 
 function App() {
   const [darkMode, setDarkmode] = useState(true);
@@ -33,9 +38,11 @@ function App() {
               <Routes>
                 <Route path="/">
                   <Route index element={<Home />} />
+                  <Route path="/signin" element={<SignIn />} />
                   <Route path="video">
                     <Route path=":id" element={<Video />} />
                   </Route>
+                  <Route path="/loader" element={<Loader />}/>
                 </Route>
               </Routes>
             </Wrapper>

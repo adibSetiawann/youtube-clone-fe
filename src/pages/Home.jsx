@@ -5,6 +5,7 @@ import Card from "../components/Card";
 const Container = styled.div`
 display: flex;
 justify-content: space-between;
+width: 85%;
 flex-wrap: wrap;`;
 const Home = () => {
   return (
