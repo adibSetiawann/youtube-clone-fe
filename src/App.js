@@ -15,7 +15,8 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-   // overflow: auto;
+   overflow: auto;
+   width: 100%;
   background-color: ${({ theme }) => theme.bg};
 `;
 const Wrapper = styled.div`

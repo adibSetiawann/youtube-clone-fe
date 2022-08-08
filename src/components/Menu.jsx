@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import LogoYoutube from "../img/youtube.png";
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreIcon from "@mui/icons-material/Explore";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
@@ -81,12 +80,6 @@ const Menu = ({ darkMode, setDarkmode }) => {
   return (
     <Container>
       <Wrapper>
-      {/* <Link to="/" style={{textDecoration:"none", color:"inherit"}}>
-        <Logo>
-          <Image src={LogoYoutube} alt="youtubelogo" />
-          AdibTube
-        </Logo>
-      </Link> */}
         <Item>
           <HomeIcon /> Home
         </Item>
