@@ -56,7 +56,7 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 25px;
   margin: auto 5px;

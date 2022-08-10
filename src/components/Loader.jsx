@@ -1,6 +1,6 @@
 import React from "react";
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { Oval, TailSpin } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 import styled from "styled-components";
 const Spinner = styled.div`
 display: flex;
