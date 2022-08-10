@@ -17,6 +17,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 16%;
@@ -77,14 +78,17 @@ const Title = styled.h2`
 `;
 
 const Menu = ({ darkMode, setDarkmode }) => {
+  
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <Container>
       <Wrapper>
-      <Link to="random" style={{ textDecoration: "none", color: "inherit" }}>
-        <Item>
-          <HomeIcon /> Home
-        </Item>
-      </Link>
+        <Link to="random" style={{ textDecoration: "none", color: "inherit" }}>
+          <Item>
+            <HomeIcon /> Home
+          </Item>
+        </Link>
         <Link to="trends" style={{ textDecoration: "none", color: "inherit" }}>
           <Item>
             <ExploreIcon /> Explore
@@ -103,15 +107,19 @@ const Menu = ({ darkMode, setDarkmode }) => {
           <HistoryIcon /> History
         </Item>
         <Hr />
-        <Login>
-          Sign in to like videos. comment. and subscribe.
-          <Link to="signin" style={{ textDecoration: "none" }}>
-            <Button>
-              <AccountCircleIcon /> Sign In
-            </Button>
-          </Link>
-        </Login>
-        <Hr />
+        {!currentUser && (
+          <>
+            <Login>
+              Sign in to like videos. comment. and subscribe.
+              <Link to="signin" style={{ textDecoration: "none" }}>
+                <Button>
+                  <AccountCircleIcon /> Sign In
+                </Button>
+              </Link>
+            </Login>
+            <Hr />
+          </>
+        )}
         <Title> Best of Adib Tube</Title>
         <Item>
           <LibraryMusicIcon /> Music

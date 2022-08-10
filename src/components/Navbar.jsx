@@ -4,6 +4,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import LogoYoutube from "../img/youtube.png";
+import VideoCallIcon from '@mui/icons-material/VideoCall';
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   position: fixed;
@@ -66,26 +68,52 @@ const Image = styled.img`
   height: 35px;
 `;
 
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.text};
+
+`;
+
+const Avatar = styled.img`
+width: 32px;
+height: 32px;
+border-radius: 50%;
+background-color: #999;
+`;
+
+
 const Navbar = () => {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <Container>
       <Wrapper>
         <Link to="random" style={{ textDecoration: "none", color: "inherit" }}>
-        <Logo>
-          <Image src={LogoYoutube} alt="youtubelogo" />
-          AdibTube
-        </Logo>
+          <Logo>
+            <Image src={LogoYoutube} alt="youtubelogo" />
+            AdibTube
+          </Logo>
         </Link>
 
         <Search>
           <Input placeholder="Search" />
           <SearchIcon />
         </Search>
-        <Link to="signin" style={{ textDecoration: "none" }}>
-          <Button>
-            <AccountCircleIcon /> Sign In
-          </Button>
-        </Link>
+        {currentUser ? (
+          <User> 
+            <VideoCallIcon />
+            <p>User</p>
+            <Avatar />
+          </User>
+        ) : (
+          <Link to="signin" style={{ textDecoration: "none" }}>
+            <Button>
+              <AccountCircleIcon /> Sign In
+            </Button>
+          </Link>
+        )}
       </Wrapper>
     </Container>
   );
