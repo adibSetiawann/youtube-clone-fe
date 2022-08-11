@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginFailure, loginStart, loginSuccess, logout } from "../redux/userSlice";
 import styled from "styled-components";
-
+import { auth, provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-//   untuk mengukur bahwa component di center
+  //   untuk mengukur bahwa component di center
   height: calc(100vh - 56px);
   color: ${({ theme }) => theme.soft};
 `;
@@ -57,7 +58,7 @@ const More = styled.div`
   font-size: 12px;
   // justify-content: space-between;
   color: ${({ theme }) => theme.textSoft};
-  margin-top:10px;
+  margin-top: 10px;
 `;
 const Links = styled.div`
   margin-left: 50px;
@@ -67,36 +68,56 @@ const Link = styled.span`
 `;
 
 const SignIn = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const dispatch = useDispatch()
+  const [name, setName] = useState("");
+  const [, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     // biar tidak refresh
-    e.preventDefault()
-    dispatch(loginStart())
-    try{
-      const res = await axios.post("/auth/signin", {name, password})
+    e.preventDefault();
+    dispatch(loginStart());
+    try {
+      const res = await axios.post("/auth/signin", { name, password });
       console.log(res.data);
-      dispatch(loginSuccess(res.data))
-    }catch(err){
-      dispatch(loginFailure())
+      dispatch(loginSuccess(res.data));
+    } catch (err) {
+      dispatch(loginFailure());
     }
+  };
 
-  }
+  const signInWithGoogle = async () => {
+    dispatch(loginStart())
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        axios.post("auth/google", {
+          name:result.user.displayName,
+          email:result.user.email,
+          img:result.user.photoURL,
+        }).then((res) => {
+          dispatch(loginSuccess(res.data))
+        })
+        console.log(result, " ini result");
+      })
+      .catch((error) => {
+        dispatch(loginFailure())
+        console.log(error, " ini error!");
+      });
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>Sign In</Title>
-        <SubTitle>to continue AdibTube</SubTitle>
-        <Input placeholder="username" onChange={e => setName(e.target.value)}/>
-        <Input type="password" placeholder="password" onChange={e => setPassword(e.target.value)}/>
+        <SubTitle>to continue MeTube</SubTitle>
+        <Input placeholder="username" onChange={(e) => setName(e.target.value)} />
+        <Input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
         <Button onClick={handleLogin}>Sign In</Button>
         <Title>Or</Title>
-        <Input placeholder="username" onChange={e => setName(e.target.value)}/>
-        <Input placeholder="email" onChange={e => setEmail(e.target.value)}/>
-        <Input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
+        <Button onClick={signInWithGoogle}>Sign In with Google</Button>
+        <Input placeholder="username" onChange={(e) => setName(e.target.value)} />
+        <Input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+        <Input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
         <Button>Sign Up</Button>
       </Wrapper>
       <More>
