@@ -120,7 +120,7 @@ const Menu = ({ darkMode, setDarkmode }) => {
             <Hr />
           </>
         )}
-        <Title> Best of Adib Tube</Title>
+        <Title> Best of MeTube</Title>
         <Item>
           <LibraryMusicIcon /> Music
         </Item>

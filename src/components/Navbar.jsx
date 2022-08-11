@@ -87,13 +87,14 @@ background-color: #999;
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user);
+  console.log(currentUser.img, ' test image')
   return (
     <Container>
       <Wrapper>
         <Link to="random" style={{ textDecoration: "none", color: "inherit" }}>
           <Logo>
             <Image src={LogoYoutube} alt="youtubelogo" />
-            AdibTube
+            MeTube
           </Logo>
         </Link>
 
@@ -104,8 +105,8 @@ const Navbar = () => {
         {currentUser ? (
           <User> 
             <VideoCallIcon />
-            <p>User</p>
-            <Avatar />
+            <p>{currentUser.name}</p>
+            <Avatar src={currentUser.img}/>
           </User>
         ) : (
           <Link to="signin" style={{ textDecoration: "none" }}>
