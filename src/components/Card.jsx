@@ -71,7 +71,7 @@ const Card = ({ type, videos }) => {
   console.log('setelahh use effect  ', channel);
 
   return (
-    <Link to="/video" style={{ textDecoration: "none" }}>
+    <Link to={`/video/${videos._id}`} style={{ textDecoration: "none" }}>
       <Container type={type}>
         <Image type={type} src={videos.imgUrl} alt="video card component" />
         <Details type={type}>

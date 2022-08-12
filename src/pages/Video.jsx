@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Iframe from "react-iframe";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -7,7 +7,11 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 import Comments from "../components/Comments";
 import AvatarImage from "../img/avatar.png";
-import Card from '../components/Card'
+import Card from "../components/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { fetchSuccess } from "../redux/videoSlice";
 
 const Container = styled.div`
   display: flex;
@@ -52,8 +56,7 @@ const Hr = styled.hr`
   border: 0px solid ${({ theme }) => theme.textSoft};
 `;
 
-const Recommendation = styled.div`
-`;
+const Recommendation = styled.div``;
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
@@ -100,6 +103,31 @@ const Subscribe = styled.button`
 `;
 
 const Video = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const { currentVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
+
+  const path = useLocation().pathname.split("/")[2];
+
+  console.log(path);
+
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const videoRes = await axios.get(`/video/find/${path}`);
+        const channelRes = await axios.get(`/user/find/${videoRes.data}`);
+        setChannel(channelRes);
+        dispatch(fetchSuccess(videoRes.data));
+        console.log(videoRes, ' jancokkkk');
+      } catch (err) {}
+    };
+    fetchData();
+  }, [path, dispatch]);
+
+  console.log(channel, " test channel");
+  
   return (
     <Container>
       <Content>
@@ -114,9 +142,11 @@ const Video = () => {
             allow="accelerometer;
             fullscreen; autoplay; clipboard-white; encrypted-media; gyroscope; picture-in-picture"
           />
-          <Title>Padi - Mahadewi</Title>
+          <Title>{currentVideo.title}</Title>
           <Details>
-            <Info>7.232.123 views &bull; Mar 21, 2013</Info>
+            <Info>
+              {currentVideo.views} views &bull; {currentVideo.createdAt}
+            </Info>
             <Buttons>
               <Button>
                 <ThumbUpIcon /> Like
@@ -148,7 +178,7 @@ const Video = () => {
           <Comments />
         </VideoWrapper>
       </Content>
-      <Recommendation>
+      {/* <Recommendation>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
@@ -164,7 +194,7 @@ const Video = () => {
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
-      </Recommendation>
+      </Recommendation> */}
     </Container>
   );
 };

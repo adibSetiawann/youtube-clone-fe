@@ -14,10 +14,12 @@ import LiveTvIcon from "@mui/icons-material/LiveTv";
 import SettingsIcon from "@mui/icons-material/Settings";
 import FlagIcon from "@mui/icons-material/Flag";
 import HelpIcon from "@mui/icons-material/Help";
+import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/userSlice";
 
 const Container = styled.div`
   width: 16%;
@@ -78,9 +80,16 @@ const Title = styled.h2`
 `;
 
 const Menu = ({ darkMode, setDarkmode }) => {
-  
   const { currentUser } = useSelector((state) => state.user);
-
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    if (!currentUser) {
+      alert("You should login first");
+    } else {
+      dispatch(logout());
+      alert("Log Out Success!");
+    }
+  };
   return (
     <Container>
       <Wrapper>
@@ -148,6 +157,9 @@ const Menu = ({ darkMode, setDarkmode }) => {
         </Item>
         <Item>
           <HelpIcon /> Help
+        </Item>
+        <Item onClick={handleLogout}>
+          <LogoutIcon /> Log Out
         </Item>
         <Item onClick={() => setDarkmode(!darkMode)}>
           <SettingsBrightnessIcon /> {darkMode ? "Light" : "Dark"} Mode
