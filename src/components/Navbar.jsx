@@ -87,7 +87,6 @@ background-color: #999;
 
 const Navbar = () => {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser.img, ' test image')
   return (
     <Container>
       <Wrapper>
